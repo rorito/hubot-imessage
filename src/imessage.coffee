@@ -33,7 +33,12 @@ class iMessageAdapter extends Adapter
         user.name = data.name
         user.room = 'iMessage'
 
-        msg = "#{@robot.name} #{data.message}"
+        # Upstream, they auto add the hubot name. I think it's better to explicitly
+        #   have to type it to prevent weird collisions in normal conversations
+        # msg = "#{@robot.name} #{data.message}"
+        
+        # needs robot name in front of the message to trigger a response
+        msg = "#{data.message}" 
         @receive new TextMessage(user, msg)
       else
         @robot.logger.info 'Ignoring message from unauthorized iMessage user ' + data.userId
