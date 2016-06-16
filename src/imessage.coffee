@@ -37,11 +37,11 @@ class iMessageAdapter extends Adapter
         # Upstream, they auto add the hubot name. I think it's better to explicitly
         #   have to type it to prevent weird collisions in normal conversations
         # msg = "#{@robot.name} #{data.message}"
-
-        console.log "run: ", msg
         
         # needs robot name in front of the message to trigger a response
         msg = "#{data.message}".replace("Gtbot", "gtbot") 
+        console.log "run: ", msg
+        
         @receive new TextMessage(user, msg)
       else
         @robot.logger.info 'Ignoring message from unauthorized iMessage user ' + data.userId
