@@ -18,6 +18,7 @@ class iMessageAdapter extends Adapter
         AppleScript.execFile script,
           [user, message],
           (err, rtn) ->
+            console.log "send - ", user, message
     else
       @robot.logger.info 'Refusing to send message to unauthorized iMessage user ' + user
 
@@ -36,6 +37,8 @@ class iMessageAdapter extends Adapter
         # Upstream, they auto add the hubot name. I think it's better to explicitly
         #   have to type it to prevent weird collisions in normal conversations
         # msg = "#{@robot.name} #{data.message}"
+
+        console.log "run: ", msg
         
         # needs robot name in front of the message to trigger a response
         msg = "#{data.message}" 
