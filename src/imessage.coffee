@@ -41,7 +41,7 @@ class iMessageAdapter extends Adapter
         console.log "run: ", msg
         
         # needs robot name in front of the message to trigger a response
-        msg = "#{data.message}" 
+        msg = "#{data.message}".replace("Gtbot", "gtbot") 
         @receive new TextMessage(user, msg)
       else
         @robot.logger.info 'Ignoring message from unauthorized iMessage user ' + data.userId
